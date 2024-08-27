@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://pu4imj0u7t8p"]
+
+[ext_resource type="PackedScene" uid="uid://bkgdopovqmkeh" path="res://FPP/scenes/Player.tscn" id="1_nrb2h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aycm8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_nvhqu"]
+sky_material = SubResource("ProceduralSkyMaterial_aycm8")
+
+[sub_resource type="Environment" id="Environment_mf785"]
+background_mode = 2
+sky = SubResource("Sky_nvhqu")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p1qji"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvcdj"]
+size = Vector3(19.731, 1, 19.8439)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ua8u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16ycf"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mf785")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_p1qji")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111572, 0, -0.125305)
+shape = SubResource("BoxShape3D_fvcdj")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.418591, -7)
+mesh = SubResource("BoxMesh_7ua8u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Box"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
+shape = SubResource("BoxShape3D_16ycf")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_nrb2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08339, 0)

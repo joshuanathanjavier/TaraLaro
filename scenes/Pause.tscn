@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq22ppw4u4cy5"]
+
+[ext_resource type="Script" path="res://scripts/Pause.gd" id="1_3trc7"]
+[ext_resource type="Texture2D" uid="uid://cewdqd5yvcpop" path="res://SpriteChar/sprite.png" id="2_au6sv"]
+[ext_resource type="Texture2D" uid="uid://copleak1se174" path="res://sprites/shadedDark14.png" id="3_a07wp"]
+[ext_resource type="Texture2D" uid="uid://bg1n5c4ld3t88" path="res://spritev2/flatDark13.png" id="4_k3kyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyu1p"]
+size = Vector2(259.46, 32.2168)
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3trc7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(360, 79.0227)
+rotation = -3.14159
+scale = Vector2(2.77499, -0.932596)
+shape = SubResource("RectangleShape2D_eyu1p")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(360, 48)
+scale = Vector2(9.3264, 1.16)
+texture = ExtResource("2_au6sv")
+
+[node name="pause" type="TouchScreenButton" parent="."]
+position = Vector2(616, 16)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_a07wp")
+texture_pressed = ExtResource("4_k3kyu")
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+[connection signal="released" from="pause" to="." method="_on_pause_released"]

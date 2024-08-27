@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://5e7pgac0w65p"]
+
+[ext_resource type="Script" path="res://scripts/Ball.gd" id="1_r3abe"]
+[ext_resource type="Texture2D" uid="uid://duoshyo7y3e53" path="res://SpriteChar/sepak.png" id="2_nw78e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryrdu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coc1y"]
+radius = 21.4471
+
+[node name="Ball" type="CharacterBody2D" groups=["Ball"]]
+position = Vector2(87, 654)
+script = ExtResource("1_r3abe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.209377, 0.209377)
+texture = ExtResource("2_nw78e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(2, -3)
+scale = Vector2(1.91297, 1.9336)
+shape = SubResource("CircleShape2D_ryrdu")
+
+[node name="BumpArea" type="Area2D" parent="."]
+scale = Vector2(1.12, 1.12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BumpArea"]
+position = Vector2(2.67857, -2.67859)
+shape = SubResource("CircleShape2D_coc1y")

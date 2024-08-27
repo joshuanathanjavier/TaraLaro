@@ -1,0 +1,197 @@
+[gd_scene load_steps=28 format=3 uid="uid://mgvqnhgyx6p1"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_2oe22"]
+[ext_resource type="PackedScene" uid="uid://fd4w0tyfmv54" path="res://scenes/Player.tscn" id="2_7v7h2"]
+[ext_resource type="Script" path="res://scripts/Layout.gd" id="3_35l4m"]
+[ext_resource type="Texture2D" uid="uid://la8cc0qcjh2b" path="res://Background/Rizal Park 2.jpg" id="5_hpx26"]
+[ext_resource type="Script" path="res://scripts/Controls.gd" id="7_hhwaf"]
+[ext_resource type="Script" path="res://scripts/Floor.gd" id="7_kjhec"]
+[ext_resource type="Texture2D" uid="uid://cewdqd5yvcpop" path="res://SpriteChar/sprite.png" id="8_iejyl"]
+[ext_resource type="Texture2D" uid="uid://copleak1se174" path="res://sprites/shadedDark14.png" id="9_01w3m"]
+[ext_resource type="Texture2D" uid="uid://b8lot2ld21en7" path="res://sprites/shadedDark24.png" id="9_iy3hv"]
+[ext_resource type="Texture2D" uid="uid://bg1n5c4ld3t88" path="res://spritev2/flatDark13.png" id="10_8jp4g"]
+[ext_resource type="Texture2D" uid="uid://bv2k0w1ec0fgf" path="res://spritev2/flatDark23.png" id="10_8w3n0"]
+[ext_resource type="Texture2D" uid="uid://sijd7w484mxj" path="res://sprites/shadedDark25.png" id="11_wpn5y"]
+[ext_resource type="Texture2D" uid="uid://dx04kswmx0ejf" path="res://spritev2/flatDark24.png" id="12_g443v"]
+[ext_resource type="PackedScene" uid="uid://bewgsxttx26u" path="res://scenes/Pausemenu.tscn" id="12_gxcc2"]
+[ext_resource type="Texture2D" uid="uid://cwp52r0xe1uqn" path="res://sprites/shadedDark49.png" id="13_qsagc"]
+[ext_resource type="Texture2D" uid="uid://cseenbgthjsjj" path="res://spritev2/flatDark48.png" id="14_3jrjs"]
+[ext_resource type="Texture2D" uid="uid://ctnvvevynata3" path="res://sprites/shadedDark45.png" id="17_cvayr"]
+[ext_resource type="Texture2D" uid="uid://csdihf6oosjvl" path="res://spritev2/flatDark44.png" id="18_k4h5l"]
+[ext_resource type="PackedScene" uid="uid://xo5b16x3ujq2" path="res://scenes/GameOver.tscn" id="22_v5pwl"]
+[ext_resource type="PackedScene" uid="uid://5e7pgac0w65p" path="res://scenes/Ball.tscn" id="23_0gxhr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey6gd"]
+size = Vector2(741, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awrir"]
+size = Vector2(20, 1014)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btd1c"]
+size = Vector2(450, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mme7s"]
+size = Vector2(728, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyu1p"]
+size = Vector2(259.46, 32.2168)
+
+[sub_resource type="SystemFont" id="SystemFont_jt3jf"]
+font_names = PackedStringArray("Montserrat")
+
+[sub_resource type="Theme" id="Theme_6p46i"]
+default_font = SubResource("SystemFont_jt3jf")
+default_font_size = 60
+
+[node name="World" type="Node"]
+script = ExtResource("1_2oe22")
+
+[node name="Background" type="CanvasGroup" parent="."]
+
+[node name="TextureRect4" type="TextureRect" parent="Background"]
+offset_left = -292.0
+offset_right = 732.0
+offset_bottom = 1024.0
+scale = Vector2(1.26365, 1.26365)
+texture = ExtResource("5_hpx26")
+
+[node name="Wall" type="CanvasGroup" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/TopWall"]
+position = Vector2(360.5, 0)
+shape = SubResource("RectangleShape2D_ey6gd")
+
+[node name="LeftWall" type="StaticBody2D" parent="Wall"]
+position = Vector2(-9, -2)
+scale = Vector2(1, 1.28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/LeftWall"]
+position = Vector2(0, 497)
+shape = SubResource("RectangleShape2D_awrir")
+
+[node name="RightWall" type="StaticBody2D" parent="Wall"]
+position = Vector2(728, 1)
+scale = Vector2(1, 1.28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/RightWall"]
+position = Vector2(0, 497)
+shape = SubResource("RectangleShape2D_awrir")
+
+[node name="Layout" type="CanvasLayer" parent="."]
+script = ExtResource("3_35l4m")
+
+[node name="Controls" type="Control" parent="Layout"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("7_hhwaf")
+
+[node name="Floor" type="StaticBody2D" parent="Layout/Controls" groups=["Floor"]]
+position = Vector2(0, 865)
+script = ExtResource("7_kjhec")
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/Controls/Floor"]
+position = Vector2(359, 668)
+scale = Vector2(7.96, 6.12429)
+texture = ExtResource("8_iejyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/Controls/Floor"]
+position = Vector2(359, 398)
+scale = Vector2(1.60477, 1)
+shape = SubResource("RectangleShape2D_btd1c")
+
+[node name="FloorBox" type="Area2D" parent="Layout/Controls/Floor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/Controls/Floor/FloorBox"]
+position = Vector2(360, 403)
+shape = SubResource("RectangleShape2D_mme7s")
+
+[node name="left" type="TouchScreenButton" parent="Layout/Controls"]
+position = Vector2(35, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("9_iy3hv")
+texture_pressed = ExtResource("10_8w3n0")
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="Layout/Controls"]
+position = Vector2(200, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("11_wpn5y")
+texture_pressed = ExtResource("12_g443v")
+action = "right"
+
+[node name="dash" type="TouchScreenButton" parent="Layout/Controls"]
+position = Vector2(400, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("13_qsagc")
+texture_pressed = ExtResource("14_3jrjs")
+action = "attack"
+
+[node name="jump" type="TouchScreenButton" parent="Layout/Controls"]
+position = Vector2(550, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("17_cvayr")
+texture_pressed = ExtResource("18_k4h5l")
+action = "jump"
+
+[node name="Pause" type="Control" parent="Layout"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Layout/Pause"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layout/Pause/StaticBody2D"]
+position = Vector2(360, 79.0227)
+rotation = -3.14159
+scale = Vector2(2.77499, -0.932596)
+shape = SubResource("RectangleShape2D_eyu1p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Layout/Pause/StaticBody2D"]
+position = Vector2(360, 48)
+scale = Vector2(9.3264, 1.16)
+texture = ExtResource("8_iejyl")
+
+[node name="pause" type="TouchScreenButton" parent="Layout/Pause"]
+position = Vector2(616, 16)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("9_01w3m")
+texture_pressed = ExtResource("10_8jp4g")
+
+[node name="ScoreLabel" type="Label" parent="Layout"]
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 326.0
+offset_bottom = 103.0
+theme = SubResource("Theme_6p46i")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Score: 0"
+
+[node name="Pause_menu" parent="Layout" instance=ExtResource("12_gxcc2")]
+
+[node name="Game Over" parent="Layout" instance=ExtResource("22_v5pwl")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("2_7v7h2")]
+
+[node name="Ball" parent="." instance=ExtResource("23_0gxhr")]
+position = Vector2(359, 520)
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="can_dash" type="Timer" parent="."]
+
+[connection signal="pressed" from="Layout/Controls/left" to="Layout/Controls" method="_on_left_pressed"]
+[connection signal="released" from="Layout/Controls/left" to="Layout/Controls" method="_on_left_released"]
+[connection signal="pressed" from="Layout/Controls/right" to="Layout/Controls" method="_on_right_pressed"]
+[connection signal="released" from="Layout/Controls/right" to="Layout/Controls" method="_on_right_released"]
+[connection signal="pressed" from="Layout/Controls/dash" to="Layout/Controls" method="_on_attack_pressed"]
+[connection signal="pressed" from="Layout/Controls/dash" to="Player" method="_on_dash_pressed"]
+[connection signal="released" from="Layout/Controls/dash" to="Layout/Controls" method="_on_attack_released"]
+[connection signal="pressed" from="Layout/Controls/jump" to="Layout/Controls" method="_on_jump_pressed"]
+[connection signal="released" from="Layout/Controls/jump" to="Layout/Controls" method="_on_jump_released"]
+[connection signal="pressed" from="Layout/Pause/pause" to="Layout" method="_on_pause_pressed"]
+[connection signal="released" from="Layout/Pause/pause" to="Layout" method="_on_pause_released"]
+[connection signal="timeout" from="dash_timer" to="Player" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="can_dash" to="Player" method="_on_can_dash_timeout"]

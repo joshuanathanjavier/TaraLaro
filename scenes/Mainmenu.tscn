@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuhi5gx0mrdgt"]
+
+[ext_resource type="Script" path="res://scripts/Mainmenu.gd" id="1_vqbd6"]
+[ext_resource type="FontFile" uid="uid://cep1aaxoo74up" path="res://Font/Lemon Days.ttf" id="3_13iwr"]
+[ext_resource type="Texture2D" uid="uid://ckhk41u8sq6dq" path="res://Background/Rizal Park 3.jpg" id="3_fjm55"]
+[ext_resource type="Texture2D" uid="uid://jlyr4ngwa46p" path="res://Buttons/Play.png" id="4_pfj5b"]
+[ext_resource type="Texture2D" uid="uid://ccbp1fis8jp2u" path="res://Buttons/Play-4.png" id="5_lnajx"]
+
+[node name="Main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vqbd6")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -555.0
+offset_right = 469.0
+offset_bottom = 1024.0
+scale = Vector2(1.7947, 1.7947)
+texture = ExtResource("3_fjm55")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 300
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.27451)
+theme_override_colors/font_outline_color = Color(0.972549, 0.537255, 0.137255, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_13iwr")
+theme_override_font_sizes/font_size = 64
+text = "TaraLaro!: Sipa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="play2" type="TouchScreenButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+position = Vector2(-104, 528)
+texture_normal = ExtResource("4_pfj5b")
+
+[node name="exit2" type="TouchScreenButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+position = Vector2(-95, 756)
+texture_normal = ExtResource("5_lnajx")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/play2" to="." method="_on_play_2_pressed"]
+[connection signal="released" from="MarginContainer/HBoxContainer/VBoxContainer/play2" to="." method="_on_play_2_released"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/exit2" to="." method="_on_exit_2_pressed"]
+[connection signal="released" from="MarginContainer/HBoxContainer/VBoxContainer/exit2" to="." method="_on_exit_2_released"]

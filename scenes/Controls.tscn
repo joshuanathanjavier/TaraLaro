@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://dxo0jfc8saufq"]
+
+[ext_resource type="Texture2D" uid="uid://b8lot2ld21en7" path="res://sprites/shadedDark24.png" id="1_2fg8d"]
+[ext_resource type="Script" path="res://scripts/Controls.gd" id="1_w2s4y"]
+[ext_resource type="Texture2D" uid="uid://cewdqd5yvcpop" path="res://SpriteChar/sprite.png" id="2_7ljrl"]
+[ext_resource type="Texture2D" uid="uid://sijd7w484mxj" path="res://sprites/shadedDark25.png" id="2_65ve6"]
+[ext_resource type="Texture2D" uid="uid://bv2k0w1ec0fgf" path="res://spritev2/flatDark23.png" id="2_iiy24"]
+[ext_resource type="Texture2D" uid="uid://cwp52r0xe1uqn" path="res://sprites/shadedDark49.png" id="3_d3rr5"]
+[ext_resource type="Texture2D" uid="uid://dx04kswmx0ejf" path="res://spritev2/flatDark24.png" id="4_ly41s"]
+[ext_resource type="Texture2D" uid="uid://cseenbgthjsjj" path="res://spritev2/flatDark48.png" id="6_hklr1"]
+[ext_resource type="Texture2D" uid="uid://ctnvvevynata3" path="res://sprites/shadedDark45.png" id="11_sqs5m"]
+[ext_resource type="Texture2D" uid="uid://csdihf6oosjvl" path="res://spritev2/flatDark44.png" id="12_si34e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btd1c"]
+size = Vector2(450, 20)
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_w2s4y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 865)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(359, 668)
+scale = Vector2(7.96, 6.12429)
+texture = ExtResource("2_7ljrl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(359, 398)
+scale = Vector2(1.60477, 1)
+shape = SubResource("RectangleShape2D_btd1c")
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2(35, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("1_2fg8d")
+texture_pressed = ExtResource("2_iiy24")
+action = "left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2(200, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_65ve6")
+texture_pressed = ExtResource("4_ly41s")
+action = "right"
+
+[node name="dash" type="TouchScreenButton" parent="."]
+position = Vector2(400, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_d3rr5")
+texture_pressed = ExtResource("6_hklr1")
+action = "attack"
+
+[node name="jump" type="TouchScreenButton" parent="."]
+position = Vector2(550, 1358)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("11_sqs5m")
+texture_pressed = ExtResource("12_si34e")
+action = "jump"
+
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]
+[connection signal="released" from="left" to="." method="_on_left_released"]
+[connection signal="pressed" from="right" to="." method="_on_right_pressed"]
+[connection signal="released" from="right" to="." method="_on_right_released"]
+[connection signal="pressed" from="dash" to="." method="_on_attack_pressed"]
+[connection signal="released" from="dash" to="." method="_on_attack_released"]
+[connection signal="pressed" from="jump" to="." method="_on_jump_pressed"]
+[connection signal="released" from="jump" to="." method="_on_jump_released"]

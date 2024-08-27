@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkgdopovqmkeh"]
+
+[ext_resource type="Script" path="res://FPP/scripts/Player.gd" id="1_5jyha"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25rxn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7lma"]
+albedo_color = Color(1, 0.121569, 0.129412, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l1qxw"]
+material = SubResource("StandardMaterial3D_g7lma")
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_5jyha")
+CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_25rxn")
+
+[node name="Placeholder Mesh" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_l1qxw")
+
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
